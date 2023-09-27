@@ -1,0 +1,152 @@
+<div class="container">
+  <form [formGroup]="employeeform" autocomplete="on" style="margin-top: 20px;">
+    <div class="mb-1">
+      <label for="name" class="form-label">Bank Name</label>
+      <div class="input-group has-validation">
+        <input
+          type="text"
+          #name
+          [ngClass]="{
+            'form-control': true,
+            'is-invalid':
+              employeeform.get('name')?.invalid &&
+              (employeeform.get('name')?.dirty ||
+                employeeform.get('name')?.touched)
+          }"
+          id="name"
+          name="name"
+          formControlName="name"
+          placeholder="Please Enter Bank Name"
+        />
+        <div class="invalid-feedback">This field is required.</div>
+      </div>
+    </div>
+    <div class="mb-1">
+      <label for="email" class="form-label">IBAN</label>
+      <div class="input-group has-validation">
+        <input
+          type="text"
+          [ngClass]="{
+            'form-control': true,
+            'is-invalid':
+              employeeform.get('email')?.invalid &&
+              (employeeform.get('email')?.dirty ||
+                employeeform.get('email')?.touched)
+          }"
+          id="email"
+          name="email"
+          formControlName="email"
+          placeholder="Enter IBAN"
+        />
+        <div class="invalid-feedback">
+          {{
+            employeeform.get('email')?.hasError('required')
+              ? 'This field is required.'
+              : 'Invalid Email'
+          }}
+        </div>
+      </div>
+    </div>
+    <div class="mb-1">
+      <label for="employeeid" class="form-label">Bank Ref</label>
+      <div class="input-group has-validation">
+        <input
+          type="number"
+          maxlength="5"
+          [ngClass]="{
+            'form-control': true,
+            'is-invalid':
+              employeeform.get('employeeid')?.invalid &&
+              (employeeform.get('employeeid')?.dirty ||
+                employeeform.get('employeeid')?.touched)
+          }"
+          id="employeeid"
+          name="employeeid"
+          formControlName="employeeid"
+          placeholder="Bank Ref"
+        />
+        <div class="invalid-feedback">This field is required.</div>
+      </div>
+    </div>
+    <div class="mb-1">
+      <label for="currency" class="form-label"
+        >currency {{ employeeform.get('currency')?.value }}
+      </label>
+      <div class="input-group">
+        <select
+          [ngClass]="{
+            'form-select': true,
+            'is-invalid': employeeform.get('currency')?.invalid
+          }"
+          formControlName="currency"
+        >
+          <option value="">--Select--</option>
+          <option value="GBP" selected="userform.get('currency')?.value=='gbp'">
+            GBP
+          </option>
+          <option value="EUR" selected="userform.get('currency')?.value=='EUR'">
+            EUR
+          </option>
+          <option value="USD" selected="userform.get('currency')?.value=='USD'">
+            USD
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-1">
+      <label for="country" class="form-label">Country </label>
+      <div class="input-group">
+        <select
+          [ngClass]="{
+            'form-select': true,
+            'is-invalid': employeeform.get('country')?.invalid
+          }"
+          formControlName="country"
+        >
+          <option value="">--Select--</option>
+          <option value="USA" selected="userform.get('country')?.value=='USA'">
+            United States of America
+          </option>
+          <option
+            value="Germany"
+            selected="userform.get('country')?.value=='Germany'"
+          >
+            Germany
+          </option>
+          <option
+            value="Italy"
+            selected="userform.get('country')?.value=='Italy'"
+          >
+            Italy
+          </option>
+          <option value="UK" selected="userform.get('country')?.value=='UK'">
+            UK
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-1">
+      <div class="btn-group" role="group">
+        <button
+          id="upadd"
+          name="upadd"
+          (click)="save()"
+          [disabled]="employeeform.invalid"
+          class="btn btn-primary"
+          type="button"
+        >
+          {{ employeeid == 0 || employeeid == null ? 'Save' : 'Update' }}
+        </button>
+        <button class="btn btn-secondary" type="button" (click)="reset()">
+          Reset
+        </button>
+      </div>
+    </div>
+    <!--
+        <div class="mb-1">
+            {{employeeform.value |json}}
+        </div>
+        -->
+  </form>
+</div>
