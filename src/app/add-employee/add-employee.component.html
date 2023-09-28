@@ -28,10 +28,7 @@
           type="text"
           [ngClass]="{
             'form-control': true,
-            'is-invalid':
-              employeeform.get('email')?.invalid &&
-              (employeeform.get('email')?.dirty ||
-                employeeform.get('email')?.touched)
+            'is-invalid': employeeform.get('email')?.invalid
           }"
           id="email"
           name="email"
@@ -39,11 +36,7 @@
           placeholder="Enter IBAN"
         />
         <div class="invalid-feedback">
-          {{
-            employeeform.get('email')?.hasError('required')
-              ? 'This field is required.'
-              : 'Invalid Email'
-          }}
+          {{ 'This field is required.' }}
         </div>
       </div>
     </div>

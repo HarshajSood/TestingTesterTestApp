@@ -39,7 +39,7 @@ export class AddDeviceComponent implements OnInit {
       deviceid: [0, [Validators.required]],
       type: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      employeeid: [0, [Validators.required]],
+      employeeid: ['', [Validators.required]],
       currency: [],
     });
   }
